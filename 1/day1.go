@@ -2,6 +2,7 @@ package main
 
 import (
 	"io/ioutil"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -48,7 +49,7 @@ func findNumberToMake2020(numToAddTo int64, numbers []int64) (result int64) {
 	return
 }
 
-// CalculateWhichTwoNumbersMake2020 given an input array, will return two numbers which when added together make 2020
+// CalculateWhichTwoNumbersMake2020 given an input array, will return two numbers which when added together make 2020 O(n^2)
 func CalculateWhichTwoNumbersMake2020(numbers []int64) (int64, int64) {
 	for i := 0; i < len(numbers); i++ {
 		for j := 0; j < len(numbers); j++ {
@@ -60,7 +61,7 @@ func CalculateWhichTwoNumbersMake2020(numbers []int64) (int64, int64) {
 	return -1, -1
 }
 
-// CalculateWhichThreeNumbersMake2020 given an input array, will return three numbers which when added together make 2020
+// CalculateWhichThreeNumbersMake2020 given an input array, will return three numbers which when added together make 2020 O(n^3)
 func CalculateWhichThreeNumbersMake2020(numbers []int64) (int64, int64, int64) {
 	for i := 0; i < len(numbers); i++ {
 		for j := 0; j < len(numbers); j++ {
@@ -72,4 +73,25 @@ func CalculateWhichThreeNumbersMake2020(numbers []int64) (int64, int64, int64) {
 		}
 	}
 	return -1, -1, -1
+}
+
+// OptimisedTwoNumbersMake2020 like CalculateWhichTwoNumbersMake2020 but O(N)
+func OptimisedTwoNumbersMake2020(numbers []int64) (int64, int64) {
+	sort.Slice(numbers, func(i, j int) bool { return numbers[i] < numbers[j] })
+	start := 0
+	end := len(numbers) - 1
+	for i := 0; i < len(numbers); i++ {
+		low := numbers[start]
+		high := numbers[end]
+		sol := low + high
+
+		if sol == 2020 {
+			return low, high
+		} else if sol > 2020 {
+			end--
+		} else if sol < 2020 {
+			start++
+		}
+	}
+	return 0, 0
 }

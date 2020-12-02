@@ -10,7 +10,7 @@ func main() {
 		fmt.Println("Error reading file ", readLinesErr)
 	}
 
-	x, y := CalculateWhichTwoNumbersMake2020(numbers)
+	x, y := OptimisedTwoNumbersMake2020(numbers)
 	if x == -1 && y == -1 {
 		fmt.Println("Unable to find two numbers that add up to make 2020")
 	} else {
