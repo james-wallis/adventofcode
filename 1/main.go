@@ -5,7 +5,7 @@ import "fmt"
 const inputFile = "./input.txt"
 
 func main() {
-	numbers, readLinesErr := ReadLines(inputFile)
+	numbers, readLinesErr := ReadLinesAndConvertToInts(inputFile)
 	if readLinesErr != nil {
 		fmt.Println("Error reading file ", readLinesErr)
 	}

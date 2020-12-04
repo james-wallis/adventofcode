@@ -1,19 +1,19 @@
 package main
 
 import (
-	"io/ioutil"
 	"sort"
 	"strconv"
-	"strings"
+
+	"github.com/james-wallis/adventofcode/utils"
 )
 
-// ReadLines reads a file, splits it into lines and converts the lines into ints (assumes given file only contains ints)
-func ReadLines(path string) ([]int64, error) {
-	content, readFileErr := ioutil.ReadFile(path)
+// ReadLinesAndConvertToInts reads a file, splits it into lines and converts the lines into ints (assumes given file only contains ints)
+func ReadLinesAndConvertToInts(path string) ([]int64, error) {
+	lines, readFileErr := utils.ReadLines(path)
 	if readFileErr != nil {
 		return nil, readFileErr
 	}
-	lines := strings.Split(string(content), "\n")
+
 	var numbers []int64
 
 	for i := 0; i < len(lines); i++ {

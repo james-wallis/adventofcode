@@ -3,24 +3,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/james-wallis/adventofcode/utils"
 )
 
 const inputFile = "./input.txt"
-
-// ReadLines reads a file, splits it into lines returns an array of strings
-func ReadLines(path string) ([]string, error) {
-	content, readFileErr := ioutil.ReadFile(path)
-	if readFileErr != nil {
-		return nil, readFileErr
-	}
-	lines := strings.Split(string(content), "\n")
-
-	return lines, nil
-}
 
 func getRangeFromString(str string) (low, high int64, err error) {
 	splitStr := strings.Split(str, "-")
@@ -111,7 +101,7 @@ func calculateValidPasswords(lines []string, method int) (int, error) {
 }
 
 func main() {
-	lines, readLinesErr := ReadLines(inputFile)
+	lines, readLinesErr := utils.ReadLines(inputFile)
 	if readLinesErr != nil {
 		fmt.Println("Error reading file ", readLinesErr)
 		return
