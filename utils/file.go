@@ -46,3 +46,18 @@ func ReadLinesAndConvertToInt(path string) ([]int, error) {
 
 	return linesAsInts, nil
 }
+
+func ReadLinesAndSplitCharacters(path string) ([][]string, error) {
+	lines, readLinesErr := ReadLines(path)
+	if readLinesErr != nil {
+		return nil, readLinesErr
+	}
+
+	slice := [][]string{}
+	for _, line := range lines {
+		splitLine := strings.Split(line, "")
+		slice = append(slice, splitLine)
+	}
+
+	return slice, nil
+}
